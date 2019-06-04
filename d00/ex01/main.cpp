@@ -14,7 +14,10 @@ int              main(void)
         if (strcmp(command, ((char *)"EXIT")) == 0)
             break;
         if (strcmp(command, ((char *)"ADD")) == 0)
-            book.add_contact();
+           {
+                book.add_contact();
+                std::cout << contacts[i].birthday_date << std::endl;
+           }
         if (strcmp(command, ((char *)"SEARCH")) == 0)
             book.search_contact();
     }

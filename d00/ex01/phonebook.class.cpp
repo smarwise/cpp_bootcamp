@@ -58,6 +58,8 @@ void    Phonebook::add_contact(void)
     std::cin >> new_contact.underwear_color;
     std::cout << "Darkest secret : ";
     std::cin >> new_contact.darkest_secret;
+    contacts[i] = new_contact;
+    i++;
     return ;
 }
 

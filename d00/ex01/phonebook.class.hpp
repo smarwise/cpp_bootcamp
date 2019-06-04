@@ -28,4 +28,7 @@ class Contact{
         char darkest_secret[512];
 };
 
+static  Contact contacts[8];
+static  int i;
+
 #endif

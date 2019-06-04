@@ -21,8 +21,6 @@ int                     main(void)
            {
                 new_contact = book.add_contact();
                 contacts[i] = new_contact;
-                std::cout << i;
-                std::cout << contacts[i].birthday_date << std::endl;
                 i++;
            }
         if (command == "SEARCH")

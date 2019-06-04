@@ -33,19 +33,8 @@ char* Phonebook::request_input(void)
 
 void    Phonebook::add_contact(void)
 {
-    char first_name[512];
-    char last_name[512];
-    char nickname[512];
-    char login[512];
-    char postal_address[512];
-    char email_address[512];
-    char phone_number[512];
-    char birthday_date[512];
-    char favorite_meal[512];
-    char underwear_color[512];
-    char darkest_secret[512];
-
-
+    Contact     NEW;
+    
     std::cout << "Adding contact called" << std::endl;
     std::cout << "First name : ";
     std::cin >> first_name;

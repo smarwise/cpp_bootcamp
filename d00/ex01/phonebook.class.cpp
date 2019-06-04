@@ -33,31 +33,31 @@ char* Phonebook::request_input(void)
 
 void    Phonebook::add_contact(void)
 {
-    Contact     NEW;
-    
+    Contact     new_contact;
+
     std::cout << "Adding contact called" << std::endl;
     std::cout << "First name : ";
-    std::cin >> first_name;
+    std::cin >> new_contact.first_name;
     std::cout << "Last name : ";
-    std::cin >> last_name;
+    std::cin >> new_contact.last_name;
     std::cout << "Nickname : ";
-    std::cin >> nickname;
+    std::cin >> new_contact.nickname;
     std::cout << "Login : ";
-    std::cin >> login;
+    std::cin >> new_contact.login;
     std::cout << "Postal address : ";
-    std::cin >> postal_address;
+    std::cin >> new_contact.postal_address;
     std::cout << "Email address : ";
-    std::cin >> email_address;
+    std::cin >> new_contact.email_address;
     std::cout << "Phone number : ";
-    std::cin >> phone_number;
+    std::cin >> new_contact.phone_number;
     std::cout << "Birthday date : ";
-    std::cin >> birthday_date;
+    std::cin >> new_contact.birthday_date;
     std::cout << "Favorite meal : ";
-    std::cin >> favorite_meal;
+    std::cin >> new_contact.favorite_meal;
     std::cout << "Underwear color : ";
-    std::cin >> underwear_color;
+    std::cin >> new_contact.underwear_color;
     std::cout << "Darkest secret : ";
-    std::cin >> darkest_secret;
+    std::cin >> new_contact.darkest_secret;
     return ;
 }
 

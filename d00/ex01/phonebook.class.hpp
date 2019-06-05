@@ -29,6 +29,9 @@ class Phonebook{
         Contact    add_contact(void);
         void    search_contact(Contact *contacts, int i);
         static int const exit = 0;
+    
+    private:
+        static int _nbContacts;
 };
 
 #endif

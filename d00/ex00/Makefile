@@ -1,6 +1,6 @@
 NAME = megaphone
 
-FLAGS = clang++ -Wall -Wextra -Werror -Wuninitialized
+FLAGS = clang++ -Wall -Wextra -Werror -Wuninitialized -std=c++98
 
 OBJ = megaphone.o
 

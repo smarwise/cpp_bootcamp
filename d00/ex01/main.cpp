@@ -19,9 +19,14 @@ int                     main(void)
             break;
         if (command == "ADD")
            {
-                new_contact = book.add_contact();
-                contacts[i] = new_contact;
-                i++;
+               if (i < 8)
+               {
+                    new_contact = book.add_contact();
+                    contacts[i] = new_contact;
+                    i++;
+               }
+               else
+                    std::cout << "You can't have more than 8 contacts" << std::endl;
            }
         if (command == "SEARCH")
             book.search_contact(contacts, i);

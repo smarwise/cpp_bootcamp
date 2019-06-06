@@ -1,10 +1,13 @@
 #include "ZombieEvent.hpp"
-// #include "Zombie.hpp"
 
 
-
-int     main(void)
+int             main(void)
 {
-    randomChump();
-    settype("qsghdasiyldfhu");
+    ZombieEvent zoom;
+    Zombie      *one = zoom.newZombie("wow");
+    
+    zoom.setZombieType("cool zombie", one);
+    one->announce();
+    zoom.randomChump();
+    delete one;
 }

@@ -11,9 +11,9 @@ ZombieEvent::~ZombieEvent()
 
 }
 
-void ZombieEvent::setZombieType()
+void ZombieEvent::setZombieType(std::string type)
 {
-    zombietype = "Weird Zombie";
+    zombietype = type;
 }
 
 Zombie* ZombieEvent::newZombie(std::string name)
@@ -23,5 +23,20 @@ Zombie* ZombieEvent::newZombie(std::string name)
     name = name;
     type = ZombieEvent::zombietype;
     return (&neww);
-} 
+}
+
+std::string ZombieEvent::randomChump()
+{
+    std::string name;
+    ZombieEvent zoom;
+    Zombie      announce;
+
+    
+    char names[4][20] = {"Stupid Scary", "Never before seen", "Unlike the movies", "Unknown"};
+    int randomindex = rand() % 4;
+    name = names[randomindex];
+    zoom.newZombie(name);
+    announce.announce();
+    return (name);
+}
 

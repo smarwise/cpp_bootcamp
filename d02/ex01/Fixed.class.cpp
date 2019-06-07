@@ -1,5 +1,4 @@
 #include "Fixed.class.hpp"
-// #include <iostream>
 
 const int Fixed::_nbFractionalbits = 8;
 
@@ -19,23 +18,24 @@ Fixed::Fixed(Fixed const &src)
 
 Fixed::Fixed(const int integer)
 {
-    std::cout << "Int constructor called" << std::endl;;
-    this->_fixedpointvalue = integer << this->_nbFractionalbits;
+    std::cout << "Int constructor called" << std::endl;
+    this->_fixedpointvalue = integer * 256;
 }
 
 Fixed::Fixed(const float floater)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->_fixedpointvalue = roundf(floater * ( 1 << this->_nbFractionalbits ));
+    this->_fixedpointvalue = roundf(floater * ( 256));
 }
+
 float Fixed::toFloat( void ) const
 {
-    return ((float)(this->_fixedpointvalue) / (1 << this->_nbFractionalbits));// (pow (2, this->_nbFractionalbits)));
+    return ((float)(this->_fixedpointvalue) / (256));
 }
 
 int Fixed::toInt( void ) const
 {
-    return (this->_fixedpointvalue >> this->_nbFractionalbits);
+    return (this->_fixedpointvalue / 256);
 }
 
 Fixed &Fixed::operator=(Fixed const &rhs)

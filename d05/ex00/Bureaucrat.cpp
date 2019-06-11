@@ -11,10 +11,11 @@ Bureaucrat::Bureaucrat(std::string name)
 
     pointer = (std::string *)&this->_name;
     *pointer = name;
-    std::cout << "Bureaucrat created" << std::endl;
+    std::cout << "Bureaucrat " << this->_name << " created" << std::endl;
+    this->_grade = 0;
 }
 
-Bureaucrat::Bureaucrat(int grade)
+void Bureaucrat::set_grade(int grade)
 {
     try
     {
@@ -29,7 +30,6 @@ Bureaucrat::Bureaucrat(int grade)
         else
         {
             this->_grade = grade;
-            std::cout << "Bureaucrat created" << std::endl;
         }
     }
     catch (int n)
@@ -44,11 +44,13 @@ Bureaucrat::Bureaucrat(int grade)
 void Bureaucrat::GradeTooLowException()
 {
     std::cout << "Grade too low" << std::endl;
+    this->set_grade(150);
 }
 
 void Bureaucrat::GradeTooHighException()
 {
     std::cout << "Grade too high" << std::endl;
+    this->set_grade(1);
 }
 
 std::string Bureaucrat::getName() const
@@ -65,36 +67,14 @@ void    Bureaucrat::incrementGrade()
 {
     std::cout << "Increment grade called" << std::endl;
     this->_grade--;
-    try
-    {
-        if (this->_grade < 1)
-        {
-            throw 1;
-        }
-    }
-    catch (int n)
-    {
-        this->GradeTooHighException();
-        this->_grade = 1;
-    }
+    this->set_grade(this->_grade);
 }
 
 void    Bureaucrat::decrementGrade()
 {
     std::cout << "Decrement grade called" << std::endl;
     this->_grade++;
-    try
-    {
-        if (this->_grade > 150)
-        {
-            throw 1;
-        }
-    }
-    catch (int n)
-    {
-        this->GradeTooLowException();
-        this->_grade = 150;
-    }
+    this->set_grade(this->_grade);
 }
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
@@ -110,6 +90,9 @@ Bureaucrat::~Bureaucrat()
 
 std::ostream &operator<<(std::ostream &o,  Bureaucrat const &rhs)
 {
+    o << "Name: ";
+    o << rhs.getName();
+    o << ", Grade: ";
     o << rhs.getGrade();
     o << std::endl;
     return (o);

@@ -12,15 +12,15 @@ class Bureaucrat
     public:
         Bureaucrat();
         Bureaucrat(std::string name);
-        Bureaucrat(int grade);
-        void GradeTooLowException();
-        void GradeTooHighException();
+        Bureaucrat &operator=(Bureaucrat const &rhs);
+        ~Bureaucrat();
+        void        set_grade(int grade);
+        void        GradeTooLowException();
+        void        GradeTooHighException();
         std::string getName() const;
         int         getGrade() const;
         void        incrementGrade();
         void        decrementGrade();
-        Bureaucrat &operator=(Bureaucrat const &rhs);
-        ~Bureaucrat();
 };
 
 std::ostream &operator<<(std::ostream &o,  Bureaucrat const &rhs); 

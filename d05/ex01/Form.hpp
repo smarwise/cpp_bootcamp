@@ -15,9 +15,29 @@ class  Form
 
     public:
         Form();
-        Form(std::string name);
+        Form(std::string name, int tosign, int toexec);
         Form(Form const &src);
         ~Form();
+        class GradeSignTooHighException : public std::exception
+        {
+            public:
+            const char* what() const throw();
+        };
+        class GradeSignTooLowException : public std::exception
+        {
+            public:
+            virtual const char* what() const throw();
+        };
+        class GradeToExecuteTooHigh : public std::exception
+        {
+            public:
+            virtual const char* what() const throw();
+        };
+        class GradeToExecuteTooLow: public std::exception
+        {
+            public:
+            virtual const char* what() const throw();
+        };
         Form        &operator=(Form const &rhs);
         void        GradeTooLowException();
         void        GradeTooHighException();

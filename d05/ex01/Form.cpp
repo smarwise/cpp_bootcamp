@@ -1,24 +1,23 @@
 #include "Form.hpp"
-#include "Form.hpp"
 
-Form::Form() : gradeSign_(75)
+Form::Form(): gradeSign_(76), gradeExecute_(0)
 {
 
+}
+
+Form::Form(std::string name): name_(name), sign_(false), gradeSign_(76),  gradeExecute_(150)
+{
+}
+
+Form::Form(Form const &src): gradeSign_(76), gradeExecute_(0)
+{
+    *this = src;
+    return;
 }
 
 Form::~Form()
 {
 
-}
-
-void Form::GradeTooLowException()
-{
-    std::cout << "Grade too low" << std::endl;
-}
-
-void Form::GradeTooHighException()
-{
-    std::cout << "Grade too high" << std::endl;
 }
 
 std::string Form::getName() const
@@ -36,41 +35,27 @@ int         Form::getGradeExecute() const
     return (this->gradeExecute_);
 }
 
-void        Form::setGradeSign()
-{
-}
-
-void        Form::setGradeExecutable()
-{
-
-}
-
 Form &Form::operator=(Form const &rhs)
 {
-    this->name_ = rhs.name_;
+    this->sign_ = rhs.getSign();
     return *this;
 }
 
-void        Form::setName(std::string name)
+void        Form::beSigned(Bureaucrat &bureau)
 {
-    this->name_ = name;
-}
-
-bool        Form::beSigned(Bureaucrat const &rhs)
-{
-    if (rhs.getGrade >= 1 and rhs.getGrade < gradeSign_)
+    if (this->sign_ == false)
     {
-        this->sign_ = true;
-        return (true);
-    }
-    else if (rhs.getGrade > 150)
-    {
-        GradeTooLowException();
-        return (false);
+        if (bureau.getGrade() < gradeSign_)
+        {
+            this->sign_ = true;
+        }
+        else
+        {
+            throw Bureaucrat::GradeTooLowException();
+        }
     }
     else
-        return (false);
-    
+        throw Bureaucrat::FormAlreadySignedException();
 }
 
 bool Form::getSign() const
@@ -80,11 +65,19 @@ bool Form::getSign() const
 
 std::ostream &operator<<(std::ostream &o,  Form const &rhs)
 {
-    o << "Form for ";
+    o << "Form ";
     o << rhs.getName();
-    o << "is ";
-    // o << rhs.
-    // o << rhs.getGrade();
+    o << " is ";
+    if (rhs.getSign() == false)
+    {
+        o << "currently unsigned and requires a grade greater than ";
+        o << rhs.getGradeSign();
+        o << " to be signed.";
+    }
+    else
+    {
+        o << "currently signed and cannot be signed again.";
+    }
     o << std::endl;
     return (o);
 }

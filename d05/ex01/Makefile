@@ -2,7 +2,7 @@ NAME = bureaucrat
 
 FLAGS = clang++ -Wall -Wextra -Werror -Wuninitialized -std=c++98
 
-OBJ = Bureaucrat.o  Form.o main.o
+OBJ = Bureaucrat.o main.o Form.o
 
 $(NAME): $(OBJ)
 	$(FLAGS) -o $(NAME) $(OBJ)

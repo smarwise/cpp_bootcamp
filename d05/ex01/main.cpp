@@ -1,23 +1,23 @@
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 int     main(void)
 {
-    Bureaucrat checklow = Bureaucrat("One");
-    Bureaucrat checkhigh = Bureaucrat("Two");
-    Bureaucrat checkmid = Bureaucrat("Three");
+    Bureaucrat checklow = Bureaucrat("One", 150);
+    Bureaucrat checkhigh = Bureaucrat("Two", 1);
+    Bureaucrat checkmid = Bureaucrat("Three", 78);
+    Bureaucrat checkerr = Bureaucrat("Four", -1);
+    Form form("cool");
+    Form former("cooler");
 
-    checklow.set_grade(150);
-    std::cout << checklow;
-    checklow.decrementGrade();
-    std::cout << checklow;
-    checklow.incrementGrade();
-    std::cout << checklow;
-    checkhigh.set_grade(1);
-    std::cout << checkhigh;
-    checkhigh.incrementGrade();
-    std::cout << checkhigh;
-    checkmid.set_grade(78);
-    std::cout << checkmid;
+    checklow.signForm(form);
+    checkmid.signForm(form);
     checkmid.incrementGrade();
-    std::cout << checkmid;
+    checkmid.incrementGrade();
+    checkmid.incrementGrade();
+    checkmid.signForm(form);
+    std::cout << form;
+    checkerr.signForm(form);
+    std::cout << former;
+    checkerr.signForm(former);
 }

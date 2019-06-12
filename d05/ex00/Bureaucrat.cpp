@@ -22,6 +22,12 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
     }
 }
 
+Bureaucrat::Bureaucrat(Bureaucrat const &src)
+{
+    *this = src;
+    return;
+}
+
 void Bureaucrat::set_grade(int grade)
 {
     if (grade < 1)

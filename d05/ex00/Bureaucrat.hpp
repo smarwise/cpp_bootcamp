@@ -13,6 +13,7 @@ class Bureaucrat
         Bureaucrat();
         Bureaucrat(std::string name, int grade);
         Bureaucrat &operator=(Bureaucrat const &rhs);
+        Bureaucrat(Bureaucrat const &src);
         ~Bureaucrat();
         class GradeTooLowException : public std::exception
         {

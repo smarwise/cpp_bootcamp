@@ -2,22 +2,21 @@
 
 int     main(void)
 {
-    Bureaucrat checklow = Bureaucrat("One");
-    Bureaucrat checkhigh = Bureaucrat("Two");
-    Bureaucrat checkmid = Bureaucrat("Three");
+    Bureaucrat checklow = Bureaucrat("One", 150);
+    Bureaucrat checkhigh = Bureaucrat("Two", 1);
+    Bureaucrat checkmid = Bureaucrat("Three", 78);
+    Bureaucrat checkerr = Bureaucrat("Four", -1);
 
-    checklow.set_grade(150);
     std::cout << checklow;
     checklow.decrementGrade();
     std::cout << checklow;
     checklow.incrementGrade();
     std::cout << checklow;
-    checkhigh.set_grade(1);
     std::cout << checkhigh;
     checkhigh.incrementGrade();
     std::cout << checkhigh;
-    checkmid.set_grade(78);
     std::cout << checkmid;
     checkmid.incrementGrade();
     std::cout << checkmid;
+    std::cout << checkerr;
 }

@@ -20,69 +20,97 @@ Converter &Converter::operator=(Converter const &rhs)
 Converter::Converter(char *str)
 {
     std::cout << std::fixed;
-    try
+    if (strlen(str) != 1)
     {
-        this->charHandler(str);
-        std::cout << "char: '" << this->char_  << "'"<< std::endl; 
+        try
+        {
+            this->charHandler(str);
+            std::cout << "char: '" << this->char_  << "'"<< std::endl; 
+        }
+        catch (Converter::Char &e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        catch (Converter::Undisplayable &e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cout << "char: impossible" << std::endl;
+        }
+        try
+        {
+            this->intHandler(str);
+            std::cout << "int: " << this->int_ << std::endl; 
+        }
+        catch (Converter::Int &e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cout << "int: impossible" << std::endl;
+        }
+        try
+        {
+            this->floatHandler(str);
+            std::cout << std::setprecision(1);
+            std::cout << "float: " << this->float_ << "f" << std::endl; 
+        }
+        catch (Converter::Float &e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cout << "float: impossible" << std::endl;
+        }
+        try
+        {
+            this->doubleHandler(str);
+            std::cout << "double: " << this->double_ << std::endl; 
+        }
+        catch (Converter::Double &e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cout << "double: impossible" << std::endl;
+        }
     }
-    catch (Converter::Char &e)
+    else
     {
-        std::cout << e.what() << std::endl;
-    }
-    catch (Converter::Undisplayable &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "char: impossible" << std::endl;
-    }
-    try
-    {
-        this->intHandler(str);
-        std::cout << "int: " << this->int_ << std::endl; 
-    }
-    catch (Converter::Int &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "int: impossible" << std::endl;
-    }
-     try
-    {
-        this->floatHandler(str);
-        std::cout << std::setprecision(1);
-        std::cout << "float: " << this->float_ << "f" << std::endl; 
-    }
-    catch (Converter::Float &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "float: impossible" << std::endl;
-    }
-    try
-    {
-        this->doubleHandler(str);
-        std::cout << "double: " << this->double_ << std::endl; 
-    }
-    catch (Converter::Double &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "double: impossible" << std::endl;
+        if (isalpha(str[0]))
+        {
+            std::cout << "char: '" << static_cast<char>(str[0])<< "'" << std::endl;
+            std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
+            std::cout << "float: " << static_cast<float>(str[0]) << std::endl;
+            std::cout << "double: " << static_cast<double>(str[0]) << std::endl;
+        }
+        if (isnumber(str[0]))
+        {
+            float p = std::stof(str);
+            std::cout << "char: non displayable" << std::endl;
+            std::cout << "int: " << static_cast<int>(p) << std::endl;
+            std::cout << "float: " << static_cast<float>(p) << std::endl;
+            std::cout << "double: " << static_cast<double>(p) << std::endl;
+        }
+        if (!isalnum(str[0]))
+        {
+            std::cout << "char: '" << static_cast<char>(str[0]) << "'" << std::endl;
+            std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
+            std::cout << "float: " << static_cast<float>(str[0]) << std::endl;
+            std::cout << "double: " << static_cast<double>(str[0]) << std::endl;
+        }
     }
 }
 
 void    Converter::charHandler(char  *str)
 {
-    float f = 0.0;
-    if (!(f = std::stof(str)))
+    int f = 0;
+    if (!(f = std::stoi(str)))
     {
         throw Converter::Char();
     }
@@ -98,8 +126,8 @@ void    Converter::charHandler(char  *str)
 
 void    Converter::doubleHandler(char  *str)
 {
-    float f = 0.0;
-    if (!(f = std::stof(str)))
+    double f = 0.0;
+    if (!(f = std::stod(str)))
     {
         throw Converter::Double();
     }
@@ -126,8 +154,8 @@ void    Converter::floatHandler(char  *str)
 
 void    Converter::intHandler(char  *str)
 {
-    float f = 0.0;
-    if (!(f = std::stof(str)))
+    int f = 0;
+    if (!(f = std::stoi(str)))
     {
         throw Converter::Int();
     }
